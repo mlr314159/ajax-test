@@ -4,14 +4,17 @@ var data;
 xhr.open("GET", "https://swapi.co/api/");
 xhr.send();
 
+function setData(jsonData){
+    data = jsonData;
+}
+
 xhr.onreadystatechange = function() {
+    console.log(this.readyState);
     if(this.readyState == 4 && this.status == 200) {
-        document.getElementById("data").innerHTML = this.responseText;
-        console.log(typeof(this.responseText));
-        console.log(typeof(JSON.parse(this.responseText)));
-        console.log(JSON.parse(this.responseText));
-        data = this.responseText;
+        setData(JSON.parse(this.responseText));
     }
 };
 
-console.log(data);
+setTimeout(function() {
+    console.log(data);
+}, 500);
