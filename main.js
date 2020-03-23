@@ -13,4 +13,4 @@ xhr.onreadystatechange = function() {
 
 setTimeout(function() {
     console.log(data);
-}, 500);
+}, 1000);
