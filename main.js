@@ -7,7 +7,6 @@ function getData(type, cb) {
     xhr.send();
 
     xhr.onreadystatechange = function() {
-        console.log(this.readyState);
         if (this.readyState == 4 && this.status == 200) {
             cb(JSON.parse(this.responseText));
         }
@@ -15,8 +14,15 @@ function getData(type, cb) {
 }
 
 function writeToDocument(type) {
+
+    var el = document.getElementById("data");
+    el.innerHTML = "";
     getData(type, function(data){
-        document.getElementById("data").innerHTML=data;
+        data = data.results;
+
+        data.forEach(function(item) {
+           el.innerHTML+="<p>" + item.name + "</p>";
+        })
     });
 }
 
